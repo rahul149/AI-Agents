@@ -21,9 +21,9 @@ from IPython.display import Image, display
 # %%
 from langchain.llms import OpenAI
 
-llm = {
-    "config_list": [{"model": "gemini-1.5-flash", "api_key": os.environ["GEMINI_API_KEY"]}],
-}
+# llm = {
+#     "config_list": [{"model": "gemini-1.5-flash", "api_key": os.environ["GEMINI_API_KEY"]}],
+# }
 
 # %%
 # pip install -U langchain-google-genai
@@ -34,7 +34,7 @@ base_url = "http://localhost:11434/"
 
 llm= ChatOllama(
     base_url=base_url,
-    model='llama3.2',
+    model='qwen2.5:3b',
     temperature=0.9
 )
 
@@ -79,18 +79,18 @@ def llmSearch(prompt: str) -> str:
     return response
 
 # %%
-webSearch
+# webSearch
 
 # %%
-llmSearch
+# llmSearch
 
 # %%
 tools = [webSearch, llmSearch]
-tools
+# tools
 
 # %%
 llm_with_tools = llm.bind_tools(tools)
-llm_with_tools
+# llm_with_tools
 
 # %%
 class State(TypedDict):
@@ -103,7 +103,7 @@ def chatBot(state: State) -> State:
     return {'messages': [response]}
 
 # %%
-graph = StateGraph(State)
+# graph = StateGraph(State)
 def get_runnable():
     memory = MemorySaver()
     # memory = AsyncSqliteSaver.from_conn_string(":memory:")
@@ -122,26 +122,26 @@ def get_runnable():
 
 
 # %%
-graph = get_runnable()
-display(Image(graph.get_graph().draw_mermaid_png()))
+# graph = get_runnable()
+# display(Image(graph.get_graph().draw_mermaid_png()))
 
 # %%
 # graph.invoke({'messages': ['Tell me about earth in 3 points']})
 
 
 # %%
-async def prompt_ai(messages):
-    config = {
-        "configurable": {
-            "thread_id": 1
-        }
-    }
+# async def prompt_ai(messages):
+#     config = {
+#         "configurable": {
+#             "thread_id": 1
+#         }
+#     }
 
-    async for event in graph.astream_events(
-            {"messages": messages}, config, version="v2"
-        ):
-            if event["event"] == "on_chat_model_stream":
-                yield event["data"]["chunk"].content
+#     async for event in graph.astream_events(
+#             {"messages": messages}, config, version="v2"
+#         ):
+#             if event["event"] == "on_chat_model_stream":
+#                 yield event["data"]["chunk"].content
 
 # %%
 # import asyncio
