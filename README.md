@@ -27,3 +27,7 @@ WebSearch Agent
 
 Text-To-SQL Agent
 ![Screenshot 2025-02-26 000104](https://github.com/user-attachments/assets/302ce9ac-6991-424c-a45e-4b043b84082e)
+
+LangFuse Dashboard
+![Screenshot 2025-03-04 021030](https://github.com/user-attachments/assets/86c63953-0966-4837-9411-d93a6b648971)
+
